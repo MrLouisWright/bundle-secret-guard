@@ -1,0 +1,30 @@
+name: 'bundle-secret-guard'
+description: 'Fail CI when secrets or API keys are shipped in your built frontend bundle'
+author: 'Louis Wright'
+branding: { icon: 'lock', color: 'red' }
+inputs:
+  dirs: { description: 'Space-separated build directories (default: auto-detect dist/build/out/.next/static)', default: '' }
+  env-files: { description: 'Space-separated .env files to cross-check', default: '' }
+  fail-on: { description: 'error | warn | none', default: 'error' }
+  config: { description: 'Path to JSON config file', default: '' }
+  sarif: { description: 'Write SARIF to this path (upload with github/codeql-action/upload-sarif)', default: '' }
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with: { node-version: '20' }
+    - shell: bash
+      env:
+        BSG_DIRS: ${{ inputs.dirs }}
+        BSG_ENV_FILES: ${{ inputs.env-files }}
+        BSG_FAIL_ON: ${{ inputs.fail-on }}
+        BSG_CONFIG: ${{ inputs.config }}
+        BSG_SARIF: ${{ inputs.sarif }}
+        FORCE_COLOR: '1'
+      run: |
+        args=(--fail-on "$BSG_FAIL_ON")
+        for f in $BSG_ENV_FILES; do args+=(-e "$f"); done
+        [ -n "$BSG_CONFIG" ] && args+=(--config "$BSG_CONFIG")
+        [ -n "$BSG_SARIF" ] && args+=(--sarif "$BSG_SARIF")
+        # shellcheck disable=SC2086
+        node "${{ github.action_path }}/bin/bundle-secret-guard.js" $BSG_DIRS "${args[@]}"

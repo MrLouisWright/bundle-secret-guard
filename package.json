@@ -1,0 +1,69 @@
+{
+  "name": "bundle-secret-guard",
+  "version": "1.0.0",
+  "description": "Fail your build when secrets or API keys end up in the frontend bundle (dist/, build/, .next/static, out/). Provider patterns, .env cross-check, source map scanning, Vite & webpack plugins, JSON & SARIF output. Zero dependencies.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./vite": {
+      "types": "./src/vite.d.ts",
+      "default": "./src/vite.js"
+    },
+    "./webpack": {
+      "types": "./src/webpack.d.ts",
+      "default": "./src/webpack.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "bundle-secret-guard": "bin/bundle-secret-guard.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "security",
+    "secrets",
+    "secret-scanning",
+    "api-keys",
+    "leak",
+    "bundle",
+    "frontend",
+    "vite",
+    "vite-plugin",
+    "webpack",
+    "nextjs",
+    "env",
+    "dotenv",
+    "ci",
+    "cli",
+    "github-action",
+    "sarif",
+    "devsecops"
+  ],
+  "author": "Louis Wright <hello@louiswright.co.uk> (https://github.com/MrLouisWright)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLouisWright/bundle-secret-guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrLouisWright/bundle-secret-guard/issues"
+  },
+  "homepage": "https://github.com/MrLouisWright/bundle-secret-guard#readme"
+}

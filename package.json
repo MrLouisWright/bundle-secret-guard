@@ -79,7 +79,7 @@
   "bugs": {
     "url": "https://github.com/MrLouisWright/bundle-secret-guard/issues"
   },
-  "homepage": "https://github.com/MrLouisWright/bundle-secret-guard#readme",
+  "homepage": "https://mrlouiswright.github.io/bundle-secret-guard/",
   "devDependencies": {
     "@types/node": "^22.15.3",
     "esbuild": "^0.25.0",

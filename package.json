@@ -1,22 +1,31 @@
 {
   "name": "bundle-secret-guard",
-  "version": "1.0.2",
-  "description": "Fail your build when secrets or API keys end up in the frontend bundle (dist/, build/, .next/static, out/). Provider patterns, .env cross-check, source map scanning, Vite & webpack plugins, JSON & SARIF output. Zero dependencies.",
+  "version": "1.1.0",
+  "description": "Fail your build when secrets or API keys end up in the frontend bundle (dist/, build/, .next/static, out/). Provider patterns, gitleaks TOML rules, entropy + baseline, optional live-key verification, .env cross-check, source map scanning, Vite & webpack plugins, JSON & SARIF output. Zero runtime dependencies.",
   "type": "module",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./patterns": {
+      "types": "./dist/patterns.d.ts",
+      "import": "./dist/patterns.js",
+      "require": "./dist/patterns.cjs"
     },
     "./vite": {
-      "types": "./src/vite.d.ts",
-      "default": "./src/vite.js"
+      "types": "./dist/vite.d.ts",
+      "import": "./dist/vite.js",
+      "require": "./dist/vite.cjs"
     },
     "./webpack": {
-      "types": "./src/webpack.d.ts",
-      "default": "./src/webpack.js"
+      "types": "./dist/webpack.d.ts",
+      "import": "./dist/webpack.js",
+      "require": "./dist/webpack.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -25,7 +34,7 @@
   },
   "files": [
     "bin",
-    "src",
+    "dist",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
@@ -34,7 +43,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test test/*.test.js",
+    "prepack": "npm run build"
   },
   "keywords": [
     "security",
@@ -50,6 +61,9 @@
     "nextjs",
     "env",
     "dotenv",
+    "gitleaks",
+    "entropy",
+    "baseline",
     "ci",
     "cli",
     "github-action",
@@ -65,5 +79,10 @@
   "bugs": {
     "url": "https://github.com/MrLouisWright/bundle-secret-guard/issues"
   },
-  "homepage": "https://github.com/MrLouisWright/bundle-secret-guard#readme"
+  "homepage": "https://github.com/MrLouisWright/bundle-secret-guard#readme",
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.3"
+  }
 }

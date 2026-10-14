@@ -14,6 +14,7 @@ export function pretty(result, { color = useColor(process.stdout), showInfo = tr
       const where = `${f.file}${f.source ? ` (${f.source})` : ''}:${f.line}:${f.column}`;
       lines.push(`  ${tag} ${bold(f.title)} ${dim('[' + f.id + ']')}`, `          ${where}${f.match ? '  ' + dim(f.match) : ''}`);
       if (f.message) lines.push(`          ${f.message}`);
+      if (f.verified) lines.push(`          ${f.verified === 'live' ? red('verified: live key') : f.verified === 'dead' ? green('verified: not active') : dim('verified: unknown')}`);
       if (f.fix) lines.push(...f.fix.split('\n').map((l, i) => `          ${i ? '  ' : cyan('fix: ')}${dim(l)}`));
     }
   }

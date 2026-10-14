@@ -2,6 +2,10 @@ export { scan, shouldFail, parseEnv, detectDirs, globToRegExp, DEFAULT_PUBLIC_PR
 export { RULES, FILE_RULES, entropy, redact } from './rules.js';
 export { pretty } from './format.js';
 export { toSarif } from './sarif.js';
-export { loadConfig, CONFIG_FILES } from './config.js';
+export { loadConfig, CONFIG_FILES, resolveGitleaksPaths, resolveBaselinePath } from './config.js';
+export { loadGitleaksRules, lineMatchesKeywords, isGitleaksAllowed } from './gitleaks.js';
+export { loadBaseline, hashSecret, updateBaseline, writeBaseline, isBaselined, BASELINE_VERSION } from './baseline.js';
+export { verifySecret, verifyFindings } from './verify.js';
+export { parseToml } from './toml.js';
 export { bundleSecretGuard as vitePlugin } from './vite.js';
 export { BundleSecretGuardPlugin as WebpackPlugin } from './webpack.js';

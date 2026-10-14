@@ -281,6 +281,10 @@ Then create a GitHub release from the new tag. `.github/workflows/release.yml` r
 - [csp-forge](https://www.npmjs.com/package/csp-forge) — generate a Content-Security-Policy.
 - **bundle-secret-guard** — fail the build when secrets ship to the browser.
 
+## Support
+
+If this project is useful to you, you can support its development with a donation: [Buy me a coffee](https://donate.stripe.com/aFa00lek3cvX4Ds2Fk9EI0b). It helps keep these tools maintained, documented and free for everyone.
+
 ## License
 
 MIT © Louis Wright ([Louis Wright](https://github.com/MrLouisWright))

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2 - 2026-10-20
+
+- Fixed: CommonJS entry points (`require()`) now bundle their internal modules, so they load on Node 18 and 20 instead of failing with ERR_REQUIRE_ESM.
+- Release workflow installs dependencies before publishing.
+- Docs: README credit and support sections.
+
 ## 1.1.0 — 2026-10-14
 
 - **gitleaks TOML**: load `[[rules]]` from gitleaks config files (`--gitleaks` / `config.gitleaks`) via a built-in TOML parser (zero runtime deps). Supports `extend.path`, rule allowlists, keywords, `secretGroup`, and entropy thresholds.

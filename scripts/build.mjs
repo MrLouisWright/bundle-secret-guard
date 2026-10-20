@@ -12,7 +12,9 @@ for (const format of ['esm', 'cjs']) {
     format,
     platform: 'node',
     target: 'node18',
-    bundle: false,
+    // CommonJS outputs bundle their relative imports so require() never loads an ESM file (Node 18/20).
+    bundle: format === 'cjs',
+    packages: 'external',
     outExtension: format === 'cjs' ? { '.js': '.cjs' } : {},
     logLevel: 'info',
   });
